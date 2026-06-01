@@ -1,0 +1,14 @@
+# Power BI temp files
+*.pbix.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large data exports
+data/processed/*.csv
