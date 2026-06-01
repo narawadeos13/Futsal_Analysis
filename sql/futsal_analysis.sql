@@ -264,12 +264,12 @@ CREATE OR REPLACE VIEW player_img AS
 SELECT 
 	player_id,
 	CASE 
-		WHEN player_id = '1' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_1_pass_lane.png?raw=true'
-		WHEN player_id = '10' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_10_pass_lane.png?raw=true'
-		WHEN player_id = '8' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_8_pass_lane.png?raw=true'
-		WHEN player_id = '4' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_4_pass_lane.png?raw=true'
-		WHEN player_id = '16' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_16_pass_lane.png?raw=true'
-		WHEN player_id = '18' THEN 'https://github.com/narawadeos13/futsal_analysis/blob/main/P_18_pass_lane.png?raw=true'
+		WHEN player_id = '1' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_1_pass_lane.png?raw=true'
+		WHEN player_id = '10' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_10_pass_lane.png?raw=true'
+		WHEN player_id = '8' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_8_pass_lane.png?raw=true'
+		WHEN player_id = '4' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_4_pass_lane.png?raw=true'
+		WHEN player_id = '16' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_16_pass_lane.png?raw=true'
+		WHEN player_id = '18' THEN 'https://github.com/narawadeos13/Futsal_Analysis/blob/736f68042039b95e23b8066168be1783a83b3ac9/assets/images/P_18_pass_lane.png?raw=true'
 	END AS img_url
 FROM futsal_raw_data
 WHERE player_id IN ('1','10','4','8','16','18')
