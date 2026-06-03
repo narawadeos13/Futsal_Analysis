@@ -99,7 +99,7 @@ Each card shows:
 
 ### Match Insights + AI Report
 
-!\[Match Insights](assets/dashboard/insights_with\_AI.png)
+![Match Insights](assets/dashboard/insights_with\_AI.png)
 
 **AI-generated natural language insight — built entirely in SQL:**
 
