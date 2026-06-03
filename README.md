@@ -4,7 +4,7 @@
 
 \---
 
-!\[Dashboard Overview](assets/dashboard/overview\_team.png)
+!\[Dashboard Overview](assets/dashboard/overview_team.png)
 
 \---
 
@@ -53,12 +53,12 @@ The pass lane geometry was built using **PostGIS spatial SQL** and visualized in
 ### Fields Captured Per Event
 
 ```
-Match\_id · Half · Display\_Min · Display\_Sec · Full\_sec
-Player\_id · Reciever\_id · Event\_X · Event\_Y
-Reciever\_X · Reciever\_Y · Event\_id · Pressure
+Match_id · Half · Display_Min · Display_Sec · Full_sec
+Player_id · Reciever_id · Event_X · Event_Y
+Reciever_X · Reciever_Y · Event_id · Pressure
 ```
 
-`Event\_X/Y` and `Reciever\_X/Y` — spatial coordinates on the pitch for every action.  
+`Event_X/Y` and `Reciever_X/Y` — spatial coordinates on the pitch for every action.  
 `Pressure` — whether the player was under defensive pressure at the moment of action.
 
 \---
@@ -67,7 +67,7 @@ Reciever\_X · Reciever\_Y · Event\_id · Pressure
 
 ### Match Overview
 
-!\[Match Overview](assets/dashboard/overview\_team.png)
+!\[Match Overview](assets/dashboard/overview_team.png)
 
 **Key metrics visible:**
 
@@ -82,7 +82,7 @@ Reciever\_X · Reciever\_Y · Event\_id · Pressure
 
 ### Player Performance Card
 
-!\[Player Performance Card](assets/dashboard/player\_stats.png)
+!\[Player Performance Card](assets/dashboard/player_stats.png)
 
 **Interactive player selector — switch between all 9 players**
 
@@ -99,7 +99,7 @@ Each card shows:
 
 ### Match Insights + AI Report
 
-!\[Match Insights](assets/dashboard/insights\_with\_AI.png)
+!\[Match Insights](assets/dashboard/insights_with\_AI.png)
 
 **AI-generated natural language insight — built entirely in SQL:**
 
@@ -120,15 +120,15 @@ Also includes:
 Pass lanes were built using **PostGIS spatial geometry** — each pass converted into an actual geometric line using start and end coordinates.
 
 ```sql
-ST\_MakeLine(
-    ST\_SetSRID(ST\_Point(event\_x, event\_y), 4326),
-    ST\_SetSRID(ST\_Point(reciever\_x, reciever\_y), 4326)
+ST_MakeLine(
+    ST_SetSRID(ST_Point(event_x, event_y), 4326),
+    ST_SetSRID(ST_Point(reciever_x, reciever_y), 4326)
 ) AS geom
 ```
 
 Exported from PostgreSQL → visualized in **QGIS** → embedded in Power BI per player.
 
-Pass lane images per player available in `assets/pass\_lanes/`
+Pass lane images per player available in `assets/images/`
 
 \---
 
@@ -187,28 +187,28 @@ Pass lane images per player available in `assets/pass\_lanes/`
 
 ```sql
 -- Window Functions
-LAG(player\_id, 1) OVER (ORDER BY full\_sec) AS assist\_player
-LEAD(full\_sec) OVER (ORDER BY full\_sec) - full\_sec AS time\_to\_next\_event
+LAG(player_id, 1) OVER (ORDER BY full_sec) AS assist_player
+LEAD(full_sec) OVER (ORDER BY full_sec) - full_sec AS time_to_next_event
 
 -- CTEs
-WITH recovery\_diff AS (
-    SELECT player\_id, event\_id, full\_sec,
-    LEAD(full\_sec) OVER (ORDER BY full\_sec) - full\_sec AS time\_to\_next\_event
-    FROM futsal\_raw\_data
+WITH recovery_diff AS (
+    SELECT player_id, event_id, full_sec,
+    LEAD(full_sec) OVER (ORDER BY full_sec) - full_sec AS time_to_next_event
+    FROM futsal_raw_data
 )
 
 -- PostGIS Spatial
-ST\_MakeLine(
-    ST\_SetSRID(ST\_Point(event\_x, event\_y), 4326),
-    ST\_SetSRID(ST\_Point(reciever\_x, reciever\_y), 4326)
+ST_MakeLine(
+    ST_SetSRID(ST_Point(event_x, event_y), 4326),
+    ST_SetSRID(ST_Point(reciever_x, reciever_y), 4326)
 ) AS geom
 
 -- AI Insight Generation
-'The team showed ' || volume\_text || ', with '
-|| shot\_text || ' and ' || pass\_text || '...' AS final\_insight
+'The team showed ' || volume_text || ', with '
+|| shot_text || ' and ' || pass_text || '...' AS final_insight
 
 -- Normalization
-defence\_zone \* 100.0 / NULLIF(MAX(defence\_zone) OVER(), 0) AS defence\_norm
+defence_zone * 100.0 / NULLIF(MAX(defence_zone) OVER(), 0) AS defence_norm
 ```
 
 \---
@@ -234,12 +234,12 @@ futsal\_analysis/
 │
 ├── data/
 │   ├── raw/
-│   │   └── futsal\_data.xlsx         ← Original self-logged match data
+│   │   └── futsal_data.xlsx         ← Original self-logged match data
 │   └── processed/
 │       └── (exported query outputs)
 │
 ├── sql/
-│   └── futsal\_analysis.sql          ← Complete analysis — 8 modules
+│   └── futsal_analysis.sql          ← Complete analysis — 8 modules
 │
 ├── powerbi/
 │   └── PB\_futsal\_analysis.pbix      ← Power BI dashboard
@@ -247,16 +247,16 @@ futsal\_analysis/
 │
 ├── assets/
 │   ├── dashboard/
-│   │   ├── overview\_team.png        ← Match overview dashboard
-│   │   ├── player\_stats.png         ← Player performance card
-│   │   └── insights\_with\_AI.png     ← AI insights page
+│   │   ├── overview_team.png        ← Match overview dashboard
+│   │   ├── player_stats.png         ← Player performance card
+│   │   └── insights_with_AI.png     ← AI insights page
 │   └── images/
-│       ├── P\_1\_pass\_lane.png
-│       ├── P\_4\_pass\_lane.png
-│       ├── P\_8\_pass\_lane.png
-│       ├── P\_10\_pass\_lane.png
-│       ├── P\_16\_pass\_lane.png
-│       └── P\_18\_pass\_lane.png
+│       ├── P_1_pass_lane.png
+│       ├── P_4_pass_lane.png
+│       ├── P_8_pass_lane.png
+│       ├── P_10_pass_lane.png
+│       ├── P_16_pass_lane.png
+│       └── P_18_pass_lane.png
 │
 ├── docs/
 │   └── methodology.md               ← Data collection methodology
