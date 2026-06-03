@@ -4,7 +4,7 @@
 
 \---
 
-!\[Dashboard Overview](assets/dashboard/overview_team.png)
+![Dashboard Overview](assets/dashboard/overview_team.png)
 
 \---
 
@@ -67,7 +67,7 @@ Reciever_X · Reciever_Y · Event_id · Pressure
 
 ### Match Overview
 
-!\[Match Overview](assets/dashboard/overview_team.png)
+![Match Overview](assets/dashboard/overview_team.png)
 
 **Key metrics visible:**
 
@@ -82,7 +82,7 @@ Reciever_X · Reciever_Y · Event_id · Pressure
 
 ### Player Performance Card
 
-!\[Player Performance Card](assets/dashboard/player_stats.png)
+![Player Performance Card](assets/dashboard/player_stats.png)
 
 **Interactive player selector — switch between all 9 players**
 
